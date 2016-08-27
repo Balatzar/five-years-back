@@ -10,7 +10,7 @@ const port = process.env.PORT || 4000;
 // MONGO
 
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGO_ADDRESS || 'mongodb://localhost:27017/fiveyears');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/fiveyears');
 
 // MIDDLEWARES
 
