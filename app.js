@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 
 // MONGO
 
@@ -32,6 +32,10 @@ const objectiveRoutes = require('./src/routes/objectiveRoutes')();
 app.use('/api/objectives', objectiveRoutes);
 
 // SERVER
+
+app.get('/', (req, res) => {
+  res.send('Bonjour ! Bienvenu sur l\'api du site five-years !');
+});
 
 app.listen(port);
 console.log(`Magic happens on port ${port}`);
