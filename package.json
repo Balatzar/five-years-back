@@ -1,0 +1,46 @@
+{
+  "name": "fiveyears-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "mocha tests/**.spec.js --timeout 10000",
+    "start": "forever -a -o out.log -e err.log start app.js",
+    "end": "forever stop app.js",
+    "restart": "npm run end && npm start",
+    "dev": "nodemon app.js",
+    "dev:watch": "nodemon app.js",
+    "jenkins": "npm-run-all --parallel dev test",
+    "doc": "apidoc -i src/ -o doc/",
+    "create": "bash scripts/init.sh",
+    "resetdb": "node tools/resetDb.js",
+    "createcsv": "node tools/createCsv.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "chance": "^1.0.4",
+    "express": "^4.13.4",
+    "express-jwt": "^3.4.0",
+    "express-rate-limit": "^2.4.0",
+    "express-validator": "^2.20.8",
+    "jsonwebtoken": "^7.0.0",
+    "mongoose": "^4.5.9",
+    "morgan": "^1.7.0",
+    "multer": "^1.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^2.9.0",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.10.2",
+    "eslint-plugin-jsx-a11y": "^1.5.5",
+    "forever": "^0.15.2",
+    "mocha": "^2.5.3",
+    "nodemon": "^1.9.2",
+    "should": "^9.0.2",
+    "supertest": "^1.2.0"
+  }
+}
