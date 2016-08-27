@@ -20,6 +20,15 @@ require('fs').readdirSync(normalizedPathMiddlewares).forEach((file) => {
   require(`./src/middlewares/${file}`)(app);
 });
 
+// Cross Domain
+app.use((request, response, next) => {
+  response.header('Access-Control-Allow-Credentials', true);
+  response.header('Access-Control-Allow-Origin', request.headers.origin);
+  response.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  response.header('Access-Control-Allow-Headers', 'X-ACCESS_TOKEN, Access-Control-Allow-Origin, Authorization, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+  next();
+});
+
 // ROUTES
 
 const groupRoutes = require('./src/routes/groupRoutes')();
@@ -27,9 +36,6 @@ app.use('/api/groups', groupRoutes);
 
 const participationRoutes = require('./src/routes/participationRoutes')();
 app.use('/api/participations', participationRoutes);
-
-const objectiveRoutes = require('./src/routes/objectiveRoutes')();
-app.use('/api/objectives', objectiveRoutes);
 
 // SERVER
 
