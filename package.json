@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint .",
     "test": "mocha tests/**.spec.js --timeout 10000",
-    "start": "forever -a -o out.log -e err.log start app.js",
+    "start": "node app.js",
+    "startservice": "forever -a -o out.log -e err.log start app.js",
     "end": "forever stop app.js",
     "restart": "npm run end && npm start",
     "dev": "nodemon app.js",
