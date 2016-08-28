@@ -9,7 +9,7 @@ const data = {
   from,
   to: 'bataprod@gmail.com',
   subject: 'Hello from Mailgun',
-  html: 'Coucou ! Tu as été invité sur Five Years, un site superbe !',
+  html: 'Coucou ! Tu as été invité sur Five Years, un site superbe !<a href="https://balatzar.github.io/five-years-front">Five Years</a>',
 };
 
 mailgun.messages().send(data, (err, body) => {
