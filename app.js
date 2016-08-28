@@ -37,6 +37,9 @@ app.use('/api/groups', groupRoutes);
 const participationRoutes = require('./src/routes/participationRoutes')();
 app.use('/api/participations', participationRoutes);
 
+const invitationRoutes = require('./src/routes/invitationRoutes')();
+app.use('/api/invitations', invitationRoutes);
+
 // SERVER
 
 app.get('/', (req, res) => {
