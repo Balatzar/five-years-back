@@ -24,7 +24,7 @@ const Invitation = {
       if (err) {
         callback(err);
       } else {
-        const templateInvitation = makeInvitationTemplate();
+        const templateInvitation = makeInvitationTemplate(inv.groupId, inv.name);
         sendMail('balthazar@fiveyears.fr',
           inv.mail,
           'Vous avez été invité !',
@@ -42,7 +42,7 @@ const Invitation = {
         console.warn(err);
         res.status(400).json(err);
       } else {
-        res.status(200).json(`${invitationsCreated.length} personnes ont bien été invité`);
+        res.status(200).json(`${invitationsCreated.length} personnes ont bien été invitées`);
       }
     });
   },
