@@ -33,6 +33,7 @@
     "express-rate-limit": "^2.4.0",
     "express-validator": "^2.20.8",
     "jsonwebtoken": "^7.0.0",
+    "mailgun-js": "^0.7.12",
     "mongoose": "^4.5.9",
     "morgan": "^1.7.0",
     "multer": "^1.1.0"
