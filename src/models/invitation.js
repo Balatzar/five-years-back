@@ -9,6 +9,11 @@ const invitationSchema = new mongoose.Schema({
   updated_at: { type: Date, required: true, default: Date.now() },
 });
 
+invitationSchema.path('mail').validate(mail => {
+  const mailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+  return mailRegex.test(mail);
+}, 'Mail invalide.');
+
 const Invitation = {
   model: mongoose.model('Invitation', invitationSchema),
 
