@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const async = require('async');
+const sendMail = require('../modules/sendMail');
+const makeInvitationTemplate = require('../modules/mails/makeInvitationTemplate');
 
 const invitationSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -18,11 +20,16 @@ const Invitation = {
   model: mongoose.model('Invitation', invitationSchema),
 
   createInvitation(invitationToCreate, callback) {
-    Invitation.model.create(invitationToCreate, (err, invitationCreated) => {
+    Invitation.model.create(invitationToCreate, (err, inv) => {
       if (err) {
         callback(err);
       } else {
-        callback(null, invitationCreated);
+        const templateInvitation = makeInvitationTemplate();
+        sendMail('balthazar@fiveyears.fr',
+          inv.mail,
+          'Vous avez été invité !',
+          templateInvitation,
+          callback);
       }
     });
   },
@@ -32,9 +39,10 @@ const Invitation = {
     const invitationsToCreate = invitations.map(o => Object.assign(o, { groupId }));
     async.map(invitationsToCreate, Invitation.createInvitation, (err, invitationsCreated) => {
       if (err) {
+        console.warn(err);
         res.status(400).json(err);
       } else {
-        res.status(200).json(invitationsCreated);
+        res.status(200).json(`${invitationsCreated.length} personnes ont bien été invité`);
       }
     });
   },
