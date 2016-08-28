@@ -9,6 +9,11 @@ const participationSchema = new mongoose.Schema({
   updated_at: { type: Date, required: true, default: Date.now() },
 });
 
+participationSchema.path('mail').validate(function (email) {
+   var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+   return emailRegex.test(email); // Assuming email has a text attribute
+}, 'Mail invalide.');
+
 const Participation = {
   model: mongoose.model('Participation', participationSchema),
 
