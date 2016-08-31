@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Group = require('./group');
 
 const participationSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -19,12 +20,17 @@ const Participation = {
 
   createParticipation(req, res) {
     const participationToCreate = req.body;
-    Participation.model.create(participationToCreate, (err, participationCreated) => {
-      if (err) {
-        res.status(400).json(err);
-      } else {
-        res.status(200).json(participationCreated);
+    Group.model.findById(participationToCreate.groupId, (errFind, group) => {
+      if (errFind || ! group) {
+        return res.status(400).json(errFind || 'Groupe inconnu.');
       }
+      Participation.model.create(participationToCreate, (errCreate, participationCreated) => {
+        if (errCreate) {
+          res.status(400).json(errCreate);
+        } else {
+          res.status(200).json(participationCreated);
+        }
+      });
     });
   },
 };
