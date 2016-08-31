@@ -6,6 +6,5 @@ const router = express.Router();
 
 module.exports = () => {
   router.post('/create', Group.createGroup);
-  router.post('/addParticipation', Group.addParticipation);
   return router;
 };
