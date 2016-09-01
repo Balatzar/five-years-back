@@ -36,7 +36,8 @@
     "mailgun-js": "^0.7.12",
     "mongoose": "^4.5.9",
     "morgan": "^1.7.0",
-    "multer": "^1.1.0"
+    "multer": "^1.1.0",
+    "rollbar": "^0.6.2"
   },
   "devDependencies": {
     "eslint": "^2.9.0",

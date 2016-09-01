@@ -1,11 +1,20 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const rollbar = require('rollbar');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 const port = process.env.PORT || 3000;
+
+// ROLLBAR
+
+// include and initialize the rollbar library with your access token
+rollbar.init(process.env.ROLLBAR);
+
+// record a generic message and send to rollbar
+rollbar.reportMessage('five-years connected');
 
 // MONGO
 
