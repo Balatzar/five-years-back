@@ -61,5 +61,3 @@ app.get('/', (req, res) => {
 
 app.listen(port);
 console.log(`Magic happens on port ${port}`);
-
-throw new Error('Testing Airbrake');
