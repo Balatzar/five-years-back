@@ -12,6 +12,14 @@ const port = process.env.PORT || 3000;
 
 app.use(rollbar.errorHandler('process.env.ROLLBAR'));
 
+// AIRBRAKE
+
+const airbrake = require('airbrake').createClient(
+  process.env.AIRBRAKE_PROJECT_ID,
+  process.env.AIRBRAKE_API_KEY
+);
+airbrake.handleExceptions();
+
 // MONGO
 
 const mongoose = require('mongoose');
@@ -53,3 +61,5 @@ app.get('/', (req, res) => {
 
 app.listen(port);
 console.log(`Magic happens on port ${port}`);
+
+throw new Error('Testing Airbrake');
